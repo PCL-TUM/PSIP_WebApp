@@ -90,13 +90,13 @@ function App() {
               </li>
               <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-2 false ">
                 <NavLink to="/datatable" className="flex hover:bg-neutral-900/40 w-full rounded-md p-2">
-                  <img src={imgChart} />
+                  <img src={imgUser} />
                     <span className={`${ !open && "hidden" } origin-left duration-200 ps-3 pt-0.5`}>พัสดุที่รับแล้ว</span>
                 </NavLink>
               </li>
               <li className="flex rounded-md text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-9 false ">
                 <div className="flex w-full rounded-md p-2 ">
-                  <img src={imgUser} />
+                  <img src={imgChart} />
                     <span className={`${ !open && "hidden" } origin-left duration-200 ps-3 pt-0.5`}>พัสดุรายภาควิชา</span>
                 </div>
               </li>

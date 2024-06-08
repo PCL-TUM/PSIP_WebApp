@@ -30,7 +30,7 @@ function Dashboard() {
     <>
       <h1 className="text-sm font-bold text-slate-700">
         กระดานข้อมูล 
-        <span className='ps-2 text-xs font-bold'>
+        <span className='ps-2 font-bold'>
           ( Dashboard )
         </span>
       </h1>

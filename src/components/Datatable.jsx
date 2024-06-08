@@ -29,12 +29,20 @@ const data = [
 
 function Datatable() {
   return (
+	<>
+	<h1 className="text-sm font-bold text-slate-700">
+		ตารางข้อมูล 
+		<span className='ps-2 font-bold'>
+		( Data Table )
+		</span>
+	</h1>
     <div className='table'>
         <DataTable
         columns={columns}
         data={data}
         />
     </div>
+	</>
   )
 }
 

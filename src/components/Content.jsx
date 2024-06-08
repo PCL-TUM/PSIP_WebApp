@@ -4,6 +4,7 @@ import Datatable from './Datatable'
 function Content() {
     return (
         <> 
+        
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}

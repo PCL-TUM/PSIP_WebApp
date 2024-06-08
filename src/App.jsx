@@ -67,13 +67,13 @@ function App() {
                   className={`${ open && "" } cursor-pointer duration-500`}
                   // rotate-[360deg]
                 />
-                <h1 className={`text-white origin-left font-medium text-nowrap duration-200
+                <h1 className={`text-white origin-left text-nowrap duration-200
                 ${ !open && "scale-0" }`}>
                   <div className="flex flex-col pt-2">
-                      <div className="text-[10.4px]">
+                      <div className="text-[11.6px]">
                         Parcel Sortation via Image Processing
                       </div>
-                      <div className="text-[12px]">
+                      <div className="text-[13px]">
                         เครื่องแยกพัสดุด้วยการประมวลผลภาพ
                       </div>
                   </div>

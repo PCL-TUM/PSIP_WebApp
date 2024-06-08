@@ -43,13 +43,33 @@ function Dashboard() {
         <input 
           type="file" 
           onChange={handleUploadImage}
-          className='file-input file-input-sm file-input-bordered w-full max-w-xs font-sans'
+          className='file-input file-input-md file-input-bordered w-full max-w-xs font-sans'
         />
         <button 
           onClick={onClickUpload}
-          className='text-white font-sans btn btn-xs bg-gradient-to-r from-blue-950 to-indigo-950 h-auto relative duration-300 ms-2 p-2.5'> 
+          className='text-white font-sans btn bg-gradient-to-r from-blue-950 to-indigo-950 h-auto relative duration-300 ms-2 p-2.5 px-6'> 
           UPLOAD
         </button> 
+
+        <div className='flex flex-col gap-3 pt-2 max-w-md'>
+          <label className="input input-md input-bordered flex items-center gap-2">
+            Name
+            <input type="text" className="grow" placeholder="Daisy" />
+          </label>
+          <label className="input input-md input-bordered flex items-center gap-2">
+            Email
+            <input type="text" className="grow" placeholder="daisy@site.com" />
+          </label>
+          <label className="input input-md input-bordered flex items-center gap-2">
+            <input type="text" className="grow" placeholder="Search" />
+            <kbd className="kbd kbd-sm">⌘</kbd>
+            <kbd className="kbd kbd-sm">K</kbd>
+          </label>
+          <label className="input input-md input-bordered flex items-center gap-2">
+            <input type="text" className="grow" placeholder="Search" />
+            <span className="badge badge-sm badge-info">Optional</span>
+          </label>
+        </div>
     </>
   )
 }

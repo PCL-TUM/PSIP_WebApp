@@ -9,4 +9,16 @@
 
 #root {
     font-family: NotoSans;
+    font-size: 17px;
+}
+.mHisf {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    background-color: #172554 !important;
+    color: white;
+    min-height: 52px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(0, 0, 0, .12);
+    border-bottom-style: solid;
 }

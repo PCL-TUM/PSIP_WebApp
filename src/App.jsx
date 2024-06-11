@@ -21,6 +21,9 @@ import imgSetting from './assets/image/icons/Setting.png'
 // import components
 import Dashboard from './components/Dashboard'
 import Datatable from './components/Datatable'
+import MeangeDepartment from './components/MeangeDepartment';
+import MeangePersonnel from './components/MeangePersonnel';
+import MeangeUserSystem from './components/MeangeUserSystem';
 
 function App() {
 
@@ -40,20 +43,9 @@ function App() {
   ];
 
   const Meangement = [
-    {id:1 , link:"/", name: "บุคลากร"},
-    {id:2 , link:"/", name: "ภาควิชา"},
-    {id:3 , link:"/", name: "ผู้ใช้งานในระบบ"},
-  ];
-
-  const Menus = [
-    { title: "กระดานข้อมูล", link:"/", src: imgChart_fill },
-    { title: "พัสดุที่รับแล้ว", link:"/datatable", src: imgChart },
-    { title: "พัสดุรายภาควิชา", src: imgUser,  },
-    { title: "จัดการข้อมูล ", src: imgSetting,  },
-    // { title: "Search", src: imgSearch },
-    // { title: "Analytics", src: imgChart },
-    // { title: "Files ", src: imgFolder, gap: true },
-    // { title: "Setting", src: imgSetting },
+    {id:1 , link:"/meangePersonnel", name: "บุคลากร"},
+    {id:2 , link:"/meangeDepartment", name: "ภาควิชา"},
+    {id:3 , link:"/meangeUserSystem", name: "ผู้ใช้งานในระบบ"},
   ];
 
   return (
@@ -180,6 +172,9 @@ function App() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />  
                 <Route path="/datatable" element={<Datatable />} />  
+                <Route path="/meangeDepartment" element={<MeangeDepartment />} />
+                <Route path="/meangePersonnel" element={<MeangePersonnel />} />  
+                <Route path="/meangeUserSystem" element={<MeangeUserSystem />} />  
               </Routes>
             </div>
             

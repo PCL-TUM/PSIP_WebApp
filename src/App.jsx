@@ -39,11 +39,17 @@ function App() {
     {id:10 , link:"/", name: "วิศวกรรมเกษตร"},
   ];
 
+  const Meangement = [
+    {id:1 , link:"/", name: "บุคลากร"},
+    {id:2 , link:"/", name: "ภาควิชา"},
+    {id:3 , link:"/", name: "ผู้ใช้งานในระบบ"},
+  ];
+
   const Menus = [
     { title: "กระดานข้อมูล", link:"/", src: imgChart_fill },
     { title: "พัสดุที่รับแล้ว", link:"/datatable", src: imgChart },
-    { title: "พัสดุรายภาควิชา", src: imgUser, gap: true },
-    { title: "จัดการข้อมูล ", src: imgSetting, gap: true },
+    { title: "พัสดุรายภาควิชา", src: imgUser,  },
+    { title: "จัดการข้อมูล ", src: imgSetting,  },
     // { title: "Search", src: imgSearch },
     // { title: "Analytics", src: imgChart },
     // { title: "Files ", src: imgFolder, gap: true },
@@ -54,10 +60,10 @@ function App() {
     <>
       <BrowserRouter>
         <div className="flex">
-          <div className={`${ open ? "w-72" : "w-20"} bg-gradient-to-r from-blue-950 to-indigo-950 h-auto p-5 relative duration-300`}>
+          <div className={`${ open ? "w-72" : "w-20"} bg-gradient-to-r from-blue-950 to-indigo-950 h-auto p-5 pt-2.5 relative duration-300`}>
             {/* <img
               src={imgControl}
-              className={`${ !open && "rotate-180" } absolute cursor-pointer duration-500 -right-3 top-[30px] w-7 border-dark-purple border-1 rounded-full`}
+              className={`${ !open && "rotate-180" } absolute cursor-pointer duration-500 -right-3 top-[20px] w-7 border-dark-purple border-1 rounded-full shadow-lg`}
               onClick={() => setOpen(!open)}
             /> */}
             <NavLink to="/">
@@ -81,20 +87,20 @@ function App() {
                 </h1>
               </div>
             </NavLink>
-            <ul className="pt-6">
-              <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-2 bg-light-white ">
+            <ul className="pt-3">
+              <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-2 ">
                 <NavLink to="/" className="flex hover:bg-neutral-900/40 w-full rounded-md p-2 active">
                   <img src={imgChart_fill} />
                     <span className={`${ !open && "hidden" } origin-left duration-200 ps-3 pt-0.5`}>กระดานข้อมูล</span>
                 </NavLink>
               </li>
-              <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-2 false ">
+              <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-2 ">
                 <NavLink to="/datatable" className="flex hover:bg-neutral-900/40 w-full rounded-md p-2">
                   <img src={imgUser} />
                     <span className={`${ !open && "hidden" } origin-left duration-200 ps-3 pt-0.5`}>พัสดุที่รับแล้ว</span>
                 </NavLink>
               </li>
-              <li className="flex rounded-md text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-9 false ">
+              <li className="flex rounded-md text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-4 ">
                 <div className="flex w-full rounded-md p-2 ">
                   <img src={imgChart} />
                     <span className={`${ !open && "hidden" } origin-left duration-200 ps-3 pt-0.5`}>พัสดุรายภาควิชา</span>
@@ -105,7 +111,7 @@ function App() {
                 <li
                   key={index}
                   className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 
-                  ${Departments.gap ? "mt-9" : "mt-2"} ${ index === 0 && "bg-light-white" } `}
+                  ${Departments.gap ? "mt-4" : "mt-2"} ${ index === 0 && "bg-light-white" } `}
                 >
                   <NavLink 
                     to={Departments.link} 
@@ -119,12 +125,31 @@ function App() {
                 </li>
               ))}
               
-              <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-9 false ">
-                <a aria-current="page" className="flex hover:bg-neutral-900/40 w-full rounded-md p-2 active" href="/">
+              <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-4 ">
+                <a aria-current="page" className="flex w-full rounded-md p-2" href="/">
                   <img src={imgSetting} />
                     <span className={`${ !open && "hidden" } origin-left duration-200 ps-3 pt-0.5`}>จัดการข้อมูล </span>
                 </a>
               </li>
+
+              {Meangement.map((Meangement, index) => (
+                <li
+                  key={index}
+                  className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 
+                  ${Meangement.gap ? "mt-4" : "mt-2"} ${ index === 0 && "bg-light-white" } `}
+                >
+                  <NavLink 
+                    to={Meangement.link} 
+                    className="flex hover:bg-neutral-900/40 w-full rounded-md p-2"
+                  >
+                    {/* <img src={Meangement.src} /> */}
+                    <span className={`${ !open && "hidden" } origin-left duration-200 ps-9 pt-0.5`}>
+                      - {Meangement.name}
+                    </span>
+                  </NavLink>
+                </li>
+              ))}
+
             </ul>
             {/* <ul className="pt-6">
             
@@ -132,7 +157,7 @@ function App() {
                 <li
                   key={index}
                   className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 
-                  ${Menu.gap ? "mt-9" : "mt-2"} ${ index === 0 && "bg-light-white" } `}
+                  ${Menu.gap ? "mt-4" : "mt-2"} ${ index === 0 && "bg-light-white" } `}
                 >
                   <NavLink 
                     to={Menu.link} 
@@ -147,11 +172,17 @@ function App() {
               ))}
             </ul> */}
           </div>
-          <div className="h-screen flex-1 p-7 overflow-y-scroll">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />  
-              <Route path="/datatable" element={<Datatable />} />  
-            </Routes>
+          <div className="h-screen flex-1 overflow-y-scroll">
+            <div className="bg-base-100 text-base-content sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)] shadow-md">
+
+            </div>
+            <div className="p-7 pt-6">
+              <Routes>
+                <Route path="/" element={<Dashboard />} />  
+                <Route path="/datatable" element={<Datatable />} />  
+              </Routes>
+            </div>
+            
           </div>
         </div>
       </BrowserRouter>

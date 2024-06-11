@@ -22,8 +22,25 @@ const columns = [
 		selector: row => row.ip_address,
 		sortable: true,
 	},
+	{
+		name: "Actions",
+		// button: true,
+		cell: (row) => (
+			<button
+				className="btn btn-outline btn-xs"
+				onClick={(e) => handleButtonClick(e, row.email)}
+			>
+				Edit
+			</button>
+		),
+	}
 	
 ];
+
+const handleButtonClick = (e, email) => {
+    e.preventDefault();
+    console.log("Row Email", email);
+};
 
 const data = [
 	{"id":1,"first_name":"Milena","last_name":"Redwin","email":"mredwin0@walmart.com","gender":"Female","ip_address":"161.179.184.114"},

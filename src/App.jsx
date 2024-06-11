@@ -6,16 +6,11 @@ import './App.css'
 import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom'
 
 // import image sidebar
-import imgControl from './assets/image/icons/control.png'
 import imgLogo from './assets/image/icons/logoRMUTT.png'
 
 import imgChart_fill from './assets/image/icons/Chart_fill.png'
-import imgChat from './assets/image/icons/Chat.png'
 import imgUser from './assets/image/icons/User.png'
-import imgCalendar from './assets/image/icons/Calendar.png'
-import imgSearch from './assets/image/icons/Search.png'
 import imgChart from './assets/image/icons/Chart.png'
-import imgFolder from './assets/image/icons/Folder.png'
 import imgSetting from './assets/image/icons/Setting.png'
 
 // import components
@@ -93,7 +88,7 @@ function App() {
                 </NavLink>
               </li>
               <li className="flex rounded-md text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-4 ">
-                <div className="flex w-full rounded-md p-2 ">
+                <div className="flex w-full rounded-md p-2">
                   <img src={imgChart} />
                     <span className={`${ !open && "hidden" } origin-left duration-200 ps-3 pt-0.5`}>พัสดุรายภาควิชา</span>
                 </div>
@@ -103,7 +98,7 @@ function App() {
                 <li
                   key={index}
                   className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 
-                  ${Departments.gap ? "mt-4" : "mt-2"} ${ index === 0 && "bg-light-white" } `}
+                  ${Departments.gap ? "mt-4" : "mt-1"} ${ index === 0 && "bg-light-white" } `}
                 >
                   <NavLink 
                     to={Departments.link} 
@@ -117,18 +112,18 @@ function App() {
                 </li>
               ))}
               
-              <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-4 ">
-                <a aria-current="page" className="flex w-full rounded-md p-2" href="/">
+              <li className="flex rounded-md text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-4 ">
+                <div className="flex w-full rounded-md p-2">
                   <img src={imgSetting} />
                     <span className={`${ !open && "hidden" } origin-left duration-200 ps-3 pt-0.5`}>จัดการข้อมูล </span>
-                </a>
+                </div>
               </li>
 
               {Meangement.map((Meangement, index) => (
                 <li
                   key={index}
                   className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 
-                  ${Meangement.gap ? "mt-4" : "mt-2"} ${ index === 0 && "bg-light-white" } `}
+                  ${Meangement.gap ? "mt-4" : "mt-1"} ${ index === 0 && "bg-light-white" } `}
                 >
                   <NavLink 
                     to={Meangement.link} 
@@ -143,26 +138,7 @@ function App() {
               ))}
 
             </ul>
-            {/* <ul className="pt-6">
-            
-              {Menus.map((Menu, index) => (
-                <li
-                  key={index}
-                  className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 
-                  ${Menu.gap ? "mt-4" : "mt-2"} ${ index === 0 && "bg-light-white" } `}
-                >
-                  <NavLink 
-                    to={Menu.link} 
-                    className="flex hover:bg-neutral-900/40 w-full rounded-md p-2"
-                  >
-                    <img src={Menu.src} />
-                    <span className={`${ !open && "hidden" } origin-left duration-200 ps-3 pt-0.5`}>
-                      {Menu.title}
-                    </span>
-                  </NavLink>
-                </li>
-              ))}
-            </ul> */}
+         
           </div>
           <div className="h-screen flex-1 overflow-y-scroll">
             <div className="bg-base-100 text-base-content sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)] shadow-md">

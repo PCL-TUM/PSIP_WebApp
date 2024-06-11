@@ -85,6 +85,12 @@ const data = [
 	{"id":40,"first_name":"Dorthea","last_name":"Garlette","email":"dgarlette13@nytimes.com","gender":"Female","ip_address":"2.138.81.95"}
 ]
 
+const paginationComponentOptions = {
+	selectAllRowsItem: true,
+	selectAllRowsItemText: 'ALL',
+  };
+
+
 function Datatable() {
   return (
 	<>
@@ -97,8 +103,10 @@ function Datatable() {
 	<div className='shadow border-opacity-40 rounded-md mt-5 '>
 		<div className='table table-zebra'>
 			<DataTable
-			columns={columns}
-			data={data}
+				columns={columns}
+				data={data}
+				pagination
+				paginationComponentOptions={paginationComponentOptions}
 			/>
 		</div>
 	</div>

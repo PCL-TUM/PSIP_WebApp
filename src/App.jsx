@@ -20,6 +20,8 @@ import MeangeDepartment from './components/MeangeDepartment';
 import MeangePersonnel from './components/MeangePersonnel';
 import MeangeUserSystem from './components/MeangeUserSystem';
 
+import useDocumentTitle from './functions/useDocumentTitle'
+
 function App() {
 
   const [open, setOpen] = useState(true);
@@ -155,7 +157,7 @@ function App() {
                   <h1 className="text-sm font-bold text-slate-700 my-auto pe-5">
                     Admin System
                   </h1>
-                  <button className="btn text-white bg-gradient-to-r from-orange-600 to-red-600 ">
+                  <button className="btn text-white bg-gradient-to-r from-orange-600 to-red-600">
                     ออกจากระบบ
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                   </button>

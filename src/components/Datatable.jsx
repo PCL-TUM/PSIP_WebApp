@@ -98,11 +98,11 @@ const paginationComponentOptions = {
 	selectAllRowsItem: true,
 	selectAllRowsItemText: 'ALL',
   };
-
-
+ 
 function Datatable() {
   return (
 	<>
+	<title>Results page</title>
 	<h1 className="text-sm font-bold text-slate-700">
 		ตารางข้อมูล 
 		<span className='ps-2 font-bold'>

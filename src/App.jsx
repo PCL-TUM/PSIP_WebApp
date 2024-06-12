@@ -142,11 +142,29 @@ function App() {
           </div>
           <div className="h-screen flex-1 overflow-y-scroll">
             <div className="bg-base-100 text-base-content sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)] shadow-md">
-
+              <div className="flex flex-row w-full">
+                <div className="w-1/2 flex justify-start my-auto ps-6">
+                  <h1 className="text-sm font-bold text-slate-700">
+                    กระดานข้อมูล 
+                    <span className='ps-2 font-bold'>
+                      ( Dashboard )
+                    </span>
+                  </h1>
+                </div>
+                <div className="w-1/2 flex justify-end my-auto pe-6">
+                  <h1 className="text-sm font-bold text-slate-700 my-auto pe-5">
+                    Admin System
+                  </h1>
+                  <button className="btn text-white bg-gradient-to-r from-orange-600 to-red-600 ">
+                    ออกจากระบบ
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                  </button>
+                </div>
+              </div>
             </div>
             <div className="p-7 pt-6">
               <Routes>
-                <Route path="/" element={<Dashboard />} />  
+                <Route path="/" element={<Dashboard />} />    
                 <Route path="/datatable" element={<Datatable />} />  
                 <Route path="/meangeDepartment" element={<MeangeDepartment />} />
                 <Route path="/meangePersonnel" element={<MeangePersonnel />} />  

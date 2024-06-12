@@ -24,14 +24,23 @@ const columns = [
 	},
 	{
 		name: "Actions",
-		// button: true,
 		cell: (row) => (
-			<button
-				className="btn btn-outline btn-xs"
-				onClick={(e) => handleButtonClick(e, row.email)}
-			>
-				Edit
-			</button>
+			<>
+				<div className='flex gap-2'>
+					<button
+						className="btn btn-outline btn-sm"
+						onClick={(e) => handleButtonClick(e, row.email)}
+					>
+						Edit
+					</button>
+					<button
+						className="btn btn-outline btn-sm"
+						onClick={(e) => handleButtonClick(e, row.email)}
+					>
+						Edit
+					</button>
+				</div>
+			</>
 		),
 	}
 	
@@ -100,9 +109,10 @@ function Datatable() {
 		( Data Table )
 		</span>
 	</h1>
-	<div className='shadow border-opacity-40 rounded-md mt-5 '>
-		<div className='table table-zebra'>
+	<div className=' shadow-md rounded-xl mt-5 '>
+		<div className='table table-zebra p-5'>
 			<DataTable
+				title= "Test Data"
 				columns={columns}
 				data={data}
 				pagination

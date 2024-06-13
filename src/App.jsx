@@ -12,15 +12,13 @@ import imgChart_fill from './assets/image/icons/Chart_fill.png'
 import imgUser from './assets/image/icons/User.png'
 import imgChart from './assets/image/icons/Chart.png'
 import imgSetting from './assets/image/icons/Setting.png'
-
+  
 // import components
 import Dashboard from './components/Dashboard'
 import Datatable from './components/Datatable'
 import MeangeDepartment from './components/MeangeDepartment';
 import MeangePersonnel from './components/MeangePersonnel';
 import MeangeUserSystem from './components/MeangeUserSystem';
-
-import useDocumentTitle from './functions/useDocumentTitle'
 
 function App() {
 
@@ -138,9 +136,7 @@ function App() {
                   </NavLink>
                 </li>
               ))}
-
             </ul>
-         
           </div>
           <div className="h-screen flex-1 overflow-y-scroll">
             <div className="bg-base-100 text-base-content sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)] shadow-md">
@@ -173,7 +169,6 @@ function App() {
                 <Route path="/meangeUserSystem" element={<MeangeUserSystem />} />  
               </Routes>
             </div>
-            
           </div>
         </div>
       </BrowserRouter>

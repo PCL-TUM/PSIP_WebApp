@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Axios from 'Axios'
+import axios from 'axios'
 
 function Dashboard() {
 
@@ -19,7 +19,7 @@ function Dashboard() {
     const formData = new FormData() //สร้างตัวแปร มารับ Class FormData
           formData.append('file', file) 
           formData.append('parcelID', 1) 
-    const uploadImg = await Axios({ //# ยิงไป API
+    const uploadImg = await axios({ //# ยิงไป API
       method: 'post',
       url: 'http://localhost:5000/upload/uploadFile',
       data: formData

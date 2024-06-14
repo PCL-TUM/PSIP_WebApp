@@ -5,7 +5,6 @@ import './App.css'
 // import react-router-dom
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-
 // import components
 import Sidebar from "./components/Sidebar";
 import Dashboard from './components/Dashboard'
@@ -19,7 +18,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div className="flex">
+        <div className="flex bg-base-200">
           <Sidebar />
           <div className="h-screen flex-1 overflow-y-scroll">
               <Routes>

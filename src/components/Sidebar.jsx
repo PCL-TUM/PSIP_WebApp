@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 // import image sidebar
+import { FaChartLine, FaCheckToSlot, FaChartGantt, FaScrewdriverWrench } from "react-icons/fa6";
 import imgLogo from '../assets/image/icons/logoRMUTT.png'
 import imgChart_fill from '../assets/image/icons/Chart_fill.png'
 import imgUser from '../assets/image/icons/User.png'
@@ -37,7 +38,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className={`${open ? "w-72" : "w-20"} bg-gradient-to-r from-blue-950 to-indigo-950 h-auto p-5 pt-2.5 relative duration-300`}>
+      <div className={`${open ? "w-72" : "w-20"} bg-white h-auto p-5 pt-2.5 relative duration-300 border shadow-md`}>
         {/* <img
               src={imgControl}
               className={`${ !open && "rotate-180" } absolute cursor-pointer duration-500 -right-3 top-[20px] w-7 border-dark-purple border-1 rounded-full shadow-lg`}
@@ -50,7 +51,7 @@ const Sidebar = () => {
               className={`${open && ""} cursor-pointer duration-500`}
             // rotate-[360deg]
             />
-            <h1 className={`text-white origin-left text-nowrap duration-200
+            <h1 className={`text-black origin-left text-nowrap duration-200
                 ${!open && "scale-0"}`}>
               <div className="flex flex-col pt-2">
                 <div className="text-[11.6px]">
@@ -65,21 +66,21 @@ const Sidebar = () => {
           </div>
         </NavLink>
         <ul className="pt-3">
-          <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-2 ">
+          <li className="flex rounded-md cursor-pointer hover:bg-light-black text-sm text-nowrap items-center gap-x-4 mt-2 ">
             <NavLink to="/" className="flex hover:bg-neutral-900/40 w-full rounded-md p-2 active">
-              <img src={imgChart_fill} />
+              <span className="font-bold text-xl"><FaChartLine /></span>
               <span className={`${!open && "hidden"} origin-left duration-200 ps-3 pt-0.5`}>กระดานข้อมูล</span>
             </NavLink>
           </li>
-          <li className="flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-2 ">
+          <li className="flex rounded-md cursor-pointer hover:bg-light-black text-sm text-nowrap items-center gap-x-4 mt-2 ">
             <NavLink to="/datatable" className="flex hover:bg-neutral-900/40 w-full rounded-md p-2">
-              <img src={imgUser} />
+            <span className="font-bold text-xl"><FaCheckToSlot /></span>
               <span className={`${!open && "hidden"} origin-left duration-200 ps-3 pt-0.5`}>พัสดุที่รับแล้ว</span>
             </NavLink>
           </li>
-          <li className="flex rounded-md text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-4 ">
+          <li className="flex rounded-md text-sm text-nowrap items-center gap-x-4 mt-4 ">
             <div className="flex w-full rounded-md p-2">
-              <img src={imgChart} />
+            <span className="font-bold text-xl"><FaChartGantt /></span>
               <span className={`${!open && "hidden"} origin-left duration-200 ps-3 pt-0.5`}>พัสดุรายภาควิชา</span>
             </div>
           </li>
@@ -87,8 +88,8 @@ const Sidebar = () => {
           {Departments.map((Departments, index) => (
             <li
               key={index}
-              className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 
-                  ${Departments.gap ? "mt-4" : "mt-1"} ${index === 0 && "bg-light-white"} `}
+              className={`flex rounded-md cursor-pointer hover:bg-light-black text-sm text-nowrap items-center gap-x-4 
+                  ${Departments.gap ? "mt-4" : "mt-1"} ${index === 0 && "bg-light-black"} `}
             >
               <NavLink
                 to={Departments.link}
@@ -102,9 +103,9 @@ const Sidebar = () => {
             </li>
           ))}
 
-          <li className="flex rounded-md text-gray-300 text-sm text-nowrap items-center gap-x-4 mt-4 ">
+          <li className="flex rounded-md text-sm text-nowrap items-center gap-x-4 mt-4 ">
             <div className="flex w-full rounded-md p-2">
-              <img src={imgSetting} />
+              <span className="font-bold text-xl"><FaScrewdriverWrench /></span>
               <span className={`${!open && "hidden"} origin-left duration-200 ps-3 pt-0.5`}>จัดการข้อมูล </span>
             </div>
           </li>
@@ -112,8 +113,8 @@ const Sidebar = () => {
           {Meangement.map((Meangement, index) => (
             <li
               key={index}
-              className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm text-nowrap items-center gap-x-4 
-                  ${Meangement.gap ? "mt-4" : "mt-1"} ${index === 0 && "bg-light-white"} `}
+              className={`flex rounded-md cursor-pointer hover:bg-light-black text-sm text-nowrap items-center gap-x-4 
+                  ${Meangement.gap ? "mt-4" : "mt-1"} ${index === 0 && "bg-light-black"} `}
             >
               <NavLink
                 to={Meangement.link}

@@ -31,7 +31,7 @@ function Dashboard() {
 
   return (
     <>
-       <div className="bg-base-100 text-base-content sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)] shadow-md">
+       <div className="bg-base-100 text-base-content sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)]">
         <div className="flex flex-row w-full">
           <div className="w-1/2 flex justify-start my-auto ps-6">
             <h1 className="text-sm font-bold text-slate-700">

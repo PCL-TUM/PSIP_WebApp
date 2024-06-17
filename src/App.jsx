@@ -6,21 +6,22 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // import components
-import Sidebar from "./components/Sidebar";
 import Dashboard from './components/Dashboard'
 import Datatable from './components/Datatable'
 import MeangeDepartment from './components/MeangeDepartment';
 import MeangePersonnel from './components/MeangePersonnel';
 import MeangeUserSystem from './components/MeangeUserSystem';
 
+import Sidebar from "./template/Sidebar";
+
 function App() {
 
   return (
     <>
       <BrowserRouter>
-        <div className="flex bg-base-200">
+        <div className="container-screen">
           <Sidebar />
-          <div className="h-screen flex-1 overflow-y-scroll">
+          <div className="credits p-8 pt-10">
               <Routes>
                 <Route path="/" element={<Dashboard />} />    
                 <Route path="/datatable" element={<Datatable />} />  

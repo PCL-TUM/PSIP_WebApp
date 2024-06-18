@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter>
         <div className="container-screen">
           <Sidebar />
-          <div className="credits p-8 pt-10">
+          <div className="credits p-8">
               <Routes>
                 <Route path="/" element={<Dashboard />} />    
                 <Route path="/datatable" element={<Datatable />} />  

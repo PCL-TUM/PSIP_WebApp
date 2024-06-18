@@ -1,5 +1,5 @@
 body {
-  background-color: #ffffff;
+  background-color: #f1f3f4;
 }
 
 .container-screen {
@@ -21,7 +21,7 @@ body {
   flex-direction: column;
   gap: 20px;
   background-color: #fff;
-  box-shadow: -5px 0px 20px 0px #a0a0a0;
+  box-shadow: -5px 0px 5px 0px #a0a0a0;
   padding: 24px;
   border-radius: 0px 20px 20px 0px;
   transition: all 0.3s;
@@ -125,7 +125,7 @@ body {
 .menu:not(:last-child) {
   padding-bottom: 10px;
   margin-bottom: 20px;
-  border-bottom: 2px solid #f6f6f6;
+  border-bottom: 1px solid #f6f6f6;
 }
 
 .menu-btn {
@@ -140,7 +140,7 @@ body {
   justify-content: center;
   cursor: pointer;
   color: #3a3a3a;
-  border: 2px solid #f6f6f6;
+  border: 1px solid #f6f6f6;
   background-color: #fff;
 }
 

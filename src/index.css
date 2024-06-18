@@ -3,24 +3,44 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: NotoSans;
-    src: url('./assets/fonts/NotoSansThai-Medium.ttf');
+  font-family: NotoSans;
+  src: url('./assets/fonts/NotoSansThai-Medium.ttf');
 }
 
 #root {
-    font-family: NotoSans;
-    font-size: 17px;
+  font-family: NotoSans;
+  font-size: 17px;
 }
+
 .mHisf {
-    font-size: .85rem;
-    font-weight: 600;
-    display: flex;
-    align-items: stretch;
-    width: 100%;
-    background-color: #f2f2f2 !important;
-    color: #3a3a3a;
-    min-height: 52px;
-    border-bottom-width: 1px;
-    border-bottom-color: rgba(0, 0, 0, .12);
-    border-bottom-style: solid;
+  font-size: .85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  background-color: #f1f3f4 !important;
+  color: #3a3a3a;
+  min-height: 52px;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(0, 0, 0, .12);
+  border-bottom-style: solid;
+}
+.fpBGKh, .fNLvxm, .huezRP, .cYgWVI, .bdUBmV {
+  position: static !important;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #f1f3f4;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(180, 180, 180);
+  border-radius: 20px;
+  /* กำหนดความโค้งมนของแถบเลื่อน scroll */
+  border: 2px solid #f1f3f4;
+  /* กำหนดกรอบเพื่อเว้นระยะรอบแถบเลื่อน scroll */
 }

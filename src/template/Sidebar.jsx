@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 import './Sidebar.css'
 
 import imgLogoRMUTT from '../assets/image/icons/logoRMUTT.png'
@@ -35,10 +36,28 @@ function Sidebar() {
     { id: 3, link: "/meangeUserSystem", name: "ผู้ใช้งานในระบบ" },
   ];
 
+  const [dataDepartment, setDepartmentData] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data: response } = await axios.post('http://localhost:5000/getData/getDataDepartment',
+          { searchDepartment: '' },
+          {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          });
+        setDepartmentData(response.data);
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
       {/* <div className="container-screen"> */}
-      <div className={sidebarActive ? 'sidebar active p-2' : 'sidebar'}>
+      <div className={sidebarActive ? 'sidebar border shadow-lg active p-2' : 'sidebar border shadow-lg'}>
         <div className="menu-btn" onClick={sidebarClick}>
           <span className={sidebarActive ? 'rotate-180' : ''}><FaAngleLeft /></span>
         </div>
@@ -78,56 +97,14 @@ function Sidebar() {
                   <p className={sidebarActive ? 'title block pt-2' : 'title hidden'}>พัสดุรายาภาควิชา</p>
                   <hr className={sidebarActive ? 'title block' : 'title hidden'}></hr>
 
-                  <li>
-                    <a href="#">
-                      <span className="text">Users</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span className="text">Subscribers</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span className="text">Users</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span className="text">Subscribers</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span className="text">Users</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span className="text">Subscribers</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span className="text">Users</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span className="text">Subscribers</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span className="text">Users</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <span className="text">Subscribers</span>
-                    </a>
-                  </li>
+                  {dataDepartment.map((dataDepartment, index) => (
+                    <li key={index}>
+                      <NavLink to={`/parcelDepartment/` + dataDepartment.ID}>
+                        <span className="text">{dataDepartment.DEPART_NAME}</span>
+                      </NavLink>
+                    </li>
+                  ))}
+
                 </ul>
               </li>
             </ul>

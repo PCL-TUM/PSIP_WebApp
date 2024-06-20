@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import DataTable from 'react-data-table-component';
 
@@ -9,7 +9,6 @@ function MeangeDepartment() {
 
   const [dataDepartment, setDepartmentData] = useState([]);
   const [searchData, setSearchData] = useState('');
-  const ref = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +45,8 @@ function MeangeDepartment() {
     }
   }
 
-  const onClickResetSearchData = async () => {
+  const onClickClearSearchData = async () => {
+    setSearchData('');
     try {
       const { data : response } = await axios.post('http://localhost:5000/getData/getDataDepartment', 
             { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
@@ -109,27 +109,27 @@ function MeangeDepartment() {
               <span className="text-slate-700 text-lg font-semibold">ค้นหาข้อมูล</span>
               <span className="text-slate-600 text-sm">( Search Data )</span>
             </div>
-            
-              <div className='px-5 pb-5'>
-                <input 
-                  type="text"
-                  name="searchData"
-                  value={searchData}
-                  ref={ref}
-                  onChange={e => setSearchData(e.target.value)}
-                  className="text-black input input-bordered rounded-b-none border-t-0 border-l-0 border-r-0 w-full focus:outline-none" 
-                  placeholder={mainTitle + "ที่ต้องการค้นหา"} />
-              </div>
-              <div className='flex flex-row gap-2 ms-auto pe-2 pb-2'>
-                <button className='btn shadow' onClick={onClickResetSearchData}>
-                  <span className='text-md'><FaX /></span> 
-                  ยกเลิก
-                </button>
-                <button className='btn btn-success shadow' onClick={onClickSearchData}>
-                  <span className='text-md'><FaMagnifyingGlass /></span> 
-                  ค้นหา
-                </button>
-              </div>
+             {/* <form id="searchData"> */}
+                <div className='px-5 pb-5'>
+                  <input 
+                    type="text"
+                    name="searchData"
+                    value={searchData}
+                    onChange={e => setSearchData(e.target.value)}
+                    className="text-black input input-bordered rounded-b-none border-t-0 border-l-0 border-r-0 w-full focus:outline-none" 
+                    placeholder={mainTitle + "ที่ต้องการค้นหา"} />
+                </div>
+                <div className='flex flex-row gap-2 ms-auto pe-2 pb-2'>
+                  <button className='btn shadow' onClick={onClickClearSearchData}>
+                    <span className='text-md'><FaX /></span> 
+                    ยกเลิก
+                  </button>
+                  <button className='btn btn-success shadow' onClick={onClickSearchData}>
+                    <span className='text-md'><FaMagnifyingGlass /></span> 
+                    ค้นหา
+                  </button>
+                </div>
+              {/* </form> */}
 
           </div>
         </div>

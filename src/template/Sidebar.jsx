@@ -6,7 +6,7 @@ import './Sidebar.css'
 import imgLogoRMUTT from '../assets/image/icons/logoRMUTT.png'
 
 // import icon
-import { CiGrid42, CiCircleCheck, CiViewList, CiSettings, CiUser, CiLogout } from "react-icons/ci";
+import { CiGrid42, CiCircleCheck, CiViewList, CiSettings, CiUser, CiLogout, CiMenuKebab } from "react-icons/ci";
 // arrow
 import { FaAngleDown, FaAngleUp, FaAngleLeft } from "react-icons/fa6";
 
@@ -56,23 +56,29 @@ function Sidebar() {
 
   return (
     <>
-      {/* <div className="container-screen"> */}
-      <div className={sidebarActive ? 'sidebar border shadow-lg active p-2' : 'sidebar border shadow-lg'}>
+      <div className={sidebarActive ? 'sidebar active p-2 pt-1.5' : 'sidebar pt-5'}>
         <div className="menu-btn" onClick={sidebarClick}>
-          <span className={sidebarActive ? 'rotate-180' : ''}><FaAngleLeft /></span>
+          <span className={sidebarActive ? 'hidden' : 'block'}><CiMenuKebab /></span>
         </div>
         <div className="head">
-          <div className={sidebarActive ? 'pt-5 m-auto' : 'ps-2'}>
+          <div className={sidebarActive ? 'pt-5 m-auto' : 'ps-2 pt-1.5'}>
             <img src={imgLogoRMUTT} alt="" />
           </div>
           <div className={sidebarActive ? 'hidden' : 'user-details content-end text-nowrap overflow-hidden'}>
-            <p className="text-[10px] text-[#3a3a3a] font-semibold">Parcel Sortation via Image Processing</p>
-            <p className="text-[12px] text-[#3a3a3a] font-semibold">เครื่องแยกพัสดุด้วยการประมวลผลภาพ</p>
+            <p className="text-[11px] text-[#3a3a3a] font-semibold">Parcel Sortation via Image Processing</p>
+            <p className="text-[13px] text-[#3a3a3a] font-semibold">เครื่องแยกพัสดุด้วยการประมวลผลภาพ</p>
           </div>
         </div>
         <div className="nav">
           <div className="menu">
-            <p className="title">Main</p>
+          <ul>
+            <li>
+              <div className={sidebarActive ? 'block' : 'hidden'} onClick={sidebarClick}>
+                <span className='text-2xl'><CiMenuKebab /></span>
+              </div>
+            </li>
+          </ul>
+            <p className="title">Main </p>
             <ul>
               <li>
                 <a href="#">
@@ -154,13 +160,6 @@ function Sidebar() {
           </ul>
         </div>
       </div>
-      {/* <div className="credits">
-                    <h1>
-                        Fully Responsive <br />
-                        Sidebar by OSC
-                    </h1>
-                </div> */}
-      {/* </div> */}
     </>
   )
 }

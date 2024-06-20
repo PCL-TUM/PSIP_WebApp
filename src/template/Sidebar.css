@@ -6,22 +6,27 @@ body {
   display: flex;
   /* align-items: center; */
   width: 100%;
-  min-height: 100vh;
+  overflow: hidden;
+  /* min-height: 100vh; */
 }
 
 .sidebar.active {
   height: 100vh;
+  overflow: visible;
+}
+
+.sidebar{
+  overflow-y: auto;
 }
 
 .sidebar {
   position: relative;
-  width: 360px;
-  min-height: 100vh;
+  width: 370px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: #fff;
-  box-shadow: -5px 0px 5px 0px #a0a0a0;
+  background-color: #f1f3f4;
   padding: 24px;
   border-radius: 0px 20px 20px 0px;
   transition: all 0.3s;
@@ -31,7 +36,7 @@ body {
   display: flex;
   gap: 15px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #f6f6f6;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .user-img {
@@ -125,13 +130,13 @@ body {
 .menu:not(:last-child) {
   padding-bottom: 10px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #f6f6f6;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .menu-btn {
   position: absolute;
-  right: -14px;
-  top: 35px;
+  right: 22px;
+  top: 112px;
   width: 28px;
   height: 28px;
   border-radius: 8px;
@@ -140,8 +145,9 @@ body {
   justify-content: center;
   cursor: pointer;
   color: #3a3a3a;
-  border: 1px solid #f6f6f6;
-  background-color: #fff;
+  font-size: 1.5rem;
+  /* border: 1px solid #e5e7eb;
+  background-color: #fff; */
 }
 
 .menu-btn:hover i {
@@ -219,14 +225,16 @@ body {
   width: 200px;
   border-radius: 20px;
   padding: 10px 20px;
-  border: 1px solid #f6f6f6;
+  /* border: 1px solid #e5e7eb; */
   background-color: #fff;
   box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
 }
 
 .credits {
   /* margin: 0 auto; */
+  height: 100vh;
   width: inherit;
+  overflow-y: auto;
   color: #fff;
   text-align: center;
   font-size: .9rem;

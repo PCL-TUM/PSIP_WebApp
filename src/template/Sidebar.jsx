@@ -56,7 +56,7 @@ function Sidebar() {
 
   return (
     <>
-      <div className={sidebarActive ? 'sidebar active p-2 pt-1.5' : 'sidebar pt-5'}>
+      <div className={sidebarActive ? 'sidebar active p-2 pt-1.5' : 'sidebar pt-5 pb-2'}>
         <div className="menu-btn" onClick={sidebarClick}>
           <span className={sidebarActive ? 'hidden' : 'block'}><CiMenuKebab /></span>
         </div>

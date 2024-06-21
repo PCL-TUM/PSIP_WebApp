@@ -12,11 +12,15 @@ body {
 
 .sidebar.active {
   height: 100vh;
-  overflow: visible;
 }
 
-.sidebar{
+.nav {
+  flex: 1;
   overflow-y: auto;
+}
+
+.nav.active {
+  overflow: visible;
 }
 
 .sidebar {
@@ -61,10 +65,6 @@ body {
 .user-details .name {
   font-size: 14px;
   font-weight: 500;
-}
-
-.nav {
-  flex: 1;
 }
 
 .menu ul li {
@@ -135,7 +135,7 @@ body {
 
 .menu-btn {
   position: absolute;
-  right: 22px;
+  right: 34px;
   top: 112px;
   width: 28px;
   height: 28px;
@@ -230,6 +230,22 @@ body {
   box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
 }
 
+.nav::-webkit-scrollbar {
+  width: 12px;
+}
+
+.nav::-webkit-scrollbar-track {
+  background: #f1f3f4;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background-color: rgb(180, 180, 180);
+  border-radius: 20px;
+  /* กำหนดความโค้งมนของแถบเลื่อน scroll */
+  border: 2px solid #f1f3f4;
+  /* กำหนดกรอบเพื่อเว้นระยะรอบแถบเลื่อน scroll */
+}
+
 .credits {
   /* margin: 0 auto; */
   height: 100vh;
@@ -239,3 +255,21 @@ body {
   text-align: center;
   font-size: .9rem;
 }
+
+.credits::-webkit-scrollbar {
+  width: 12px;
+}
+
+.credits::-webkit-scrollbar-track {
+  background: #f1f3f4;
+}
+
+.credits::-webkit-scrollbar-thumb {
+  background-color: rgb(180, 180, 180);
+  border-radius: 20px;
+  /* กำหนดความโค้งมนของแถบเลื่อน scroll */
+  border: 2px solid #f1f3f4;
+  /* กำหนดกรอบเพื่อเว้นระยะรอบแถบเลื่อน scroll */
+}
+
+

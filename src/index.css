@@ -29,18 +29,3 @@
   position: static !important;
 }
 
-body::-webkit-scrollbar {
-  width: 12px;
-}
-
-body::-webkit-scrollbar-track {
-  background: #f1f3f4;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: rgb(180, 180, 180);
-  border-radius: 20px;
-  /* กำหนดความโค้งมนของแถบเลื่อน scroll */
-  border: 2px solid #f1f3f4;
-  /* กำหนดกรอบเพื่อเว้นระยะรอบแถบเลื่อน scroll */
-}

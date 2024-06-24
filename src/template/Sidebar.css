@@ -19,7 +19,8 @@ body {
   overflow-y: auto;
 }
 
-.nav.active {
+.nav-visible {
+  flex: 1;
   overflow: visible;
 }
 

@@ -57,9 +57,9 @@ function Sidebar() {
   return (
     <>
       <div className={sidebarActive ? 'sidebar active p-2 pt-1.5' : 'sidebar pt-5 pb-2'}>
-        <div className="menu-btn" onClick={sidebarClick}>
+        {/* <div className="menu-btn" onClick={sidebarClick}>
           <span className={sidebarActive ? 'hidden' : 'block'}><CiMenuKebab /></span>
-        </div>
+        </div> */}
         <div className="head">
           <div className={sidebarActive ? 'pt-5 m-auto' : 'ps-2 pt-1.5'}>
             <img src={imgLogoRMUTT} alt="" />
@@ -69,16 +69,25 @@ function Sidebar() {
             <p className="text-[13px] text-[#3a3a3a] font-semibold">เครื่องแยกพัสดุด้วยการประมวลผลภาพ</p>
           </div>
         </div>
-        <div className="nav">
+        <div className={sidebarActive ? 'nav-visible' : 'nav'}>
           <div className="menu">
           <ul>
             <li>
-              <div className={sidebarActive ? 'block' : 'hidden'} onClick={sidebarClick}>
+            <a className={sidebarActive ? 'flex items-center' : 'hidden'} >
+              <div onClick={sidebarClick}>
                 <span className='text-2xl'><CiMenuKebab /></span>
+                <span className="text">ขยายเมนู</span>
               </div>
+            </a>
             </li>
           </ul>
+          <p className={sidebarActive ? 'block title' : 'hidden'}>Main </p>
+          <div className={sidebarActive ? 'hidden' : 'flex flex-row justify-between pe-1.5'}>
             <p className="title">Main </p>
+            <div className='' onClick={sidebarClick}>
+              <span className='text-[1.2rem]'><CiMenuKebab /></span>
+            </div>
+          </div>
             <ul>
               <li>
                 <a href="#">
@@ -95,7 +104,7 @@ function Sidebar() {
               <li className={openSubMenu ? '' : 'active'}>
                 <a onClick={subMenuClick}>
                   <span className="text-2xl"><CiViewList /></span>
-                  <span className="text text-nowrap overflow-hidden">พัสดุรายาภาควิชา</span>
+                  <span className="text text-nowrap">พัสดุรายาภาควิชา</span>
                   <span className="arrow"><FaAngleDown /></span>
                 </a>
                 <ul className={openSubMenu ? 'sub-menu sub-menu-close' : 'sub-menu sub-menu-open'}>
@@ -121,7 +130,7 @@ function Sidebar() {
               <li className={openSubMenuMeange ? '' : 'active'}>
                 <a onClick={subMenuMeangeClick}>
                   <span className="text-2xl"><CiSettings /></span>
-                  <span className="text text-nowrap overflow-hidden">จัดการข้อมูล</span>
+                  <span className="text text-nowrap">จัดการข้อมูล</span>
                   <span className="arrow"><FaAngleDown /></span>
                 </a>
                 <ul className={openSubMenuMeange ? 'sub-menu sub-menu-close' : 'sub-menu sub-menu-open'}>

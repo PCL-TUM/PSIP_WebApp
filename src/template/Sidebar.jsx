@@ -8,7 +8,7 @@ import imgLogoRMUTT from '../assets/image/icons/logoRMUTT.png'
 // import icon
 import { CiGrid42, CiCircleCheck, CiViewList, CiSettings, CiUser, CiLogout, CiMenuKebab } from "react-icons/ci";
 // arrow
-import { FaAngleDown, FaAngleUp, FaAngleLeft } from "react-icons/fa6";
+import { FaAngleDown } from "react-icons/fa6";
 
 
 function Sidebar() {

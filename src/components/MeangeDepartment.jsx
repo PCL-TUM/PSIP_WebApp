@@ -1,14 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import DataTable from 'react-data-table-component';
 
 import { CiSettings, CiSearch, CiViewTable } from "react-icons/ci";
 import { FaPencil, FaRegTrashCan, FaPlus, FaMagnifyingGlass, FaX } from "react-icons/fa6";
 
-function MeangeDepartment() {
+// get currentDate -----------------------------------------------------------------------------------------------------------------------------------
+function getDate() {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate();
+  const time = (today.getHours() < 10 ? '0' : '') + today.getHours()
+       + ':' + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes()
+       + ":" + (today.getSeconds() < 10 ? '0' : '') + today.getSeconds();
+  return `${year}-${month}-${date} ${time}`;
+}
 
+function MeangeDepartment() {
   const [dataDepartment, setDepartmentData] = useState([]);
   const [searchData, setSearchData] = useState('');
+  const [currentDate, setCurrentDate] = useState(getDate());
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,7 +65,7 @@ function MeangeDepartment() {
     setSearchData('');
     try {
       await axios.post('http://localhost:5000/getData/getDataDepartment',
-      { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+      { searchDepartment: '' }, { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
       .then(response => {
         const departmentData = response.data
           if (departmentData.status === "Succeed") {
@@ -68,6 +80,37 @@ function MeangeDepartment() {
     }
   }
 
+  // edit button -------------------------------------------------------------------------------------------------------------------------------
+  const refDepartName = useRef(null)
+  const [valueDepartName, setValueDepartName] = useState('')
+
+  const refDepartNameEN = useRef(null)
+  const [valueDepartNameEN, setValueDepartNameEN] = useState('')
+
+  const onClickFetchDataDepartment = async (e, ID) => {
+    await axios.post(`http://localhost:5000/getData/getDataDepartment/${ID}`,
+      { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+      .then(response => {
+        const departmentData = response.data
+        if (departmentData.status === "Succeed") {
+          document.getElementById('edit_Department').showModal()
+          // useState
+          setValueDepartName(departmentData.data[0].DEPART_NAME)
+          setValueDepartNameEN(departmentData.data[0].KEY_WORD_EN)
+          // useRef
+          refDepartName.current.value = valueDepartName
+          refDepartNameEN.current.value = valueDepartNameEN
+
+          setCurrentDate(getDate())
+          console.log(currentDate);
+        } else {
+          console.log("Fail");
+        }
+      }
+    );
+  }
+
+  // dataTable -----------------------------------------------------------------------------------------------------------------------------------
   const columns = [
     {
       name: 'รายชื่อภาควิชา',
@@ -79,10 +122,10 @@ function MeangeDepartment() {
       cell: (row) => (
         <>
           <div className='flex items-center gap-2'>
-            <button className="btn btn-sm btn-outline btn-warning font-normal shadow" onClick={(e) => handleButtonClick(e, row.id)}>
+            <button className="btn btn-sm btn-outline btn-warning font-normal shadow" onClick={(e) => onClickFetchDataDepartment(e, row.ID)}>
               <span className='text-md'><FaPencil /></span> แก้ไข
             </button>
-            <button className="btn btn-sm btn-outline btn-error font-normal shadow" onClick={(e) => handleButtonClick(e, row.id)}>
+            <button className="btn btn-sm btn-outline btn-error font-normal shadow" onClick={(e) => onClickFetchDataDepartment(e, row.ID)}>
               <span className='text-md'><FaRegTrashCan /></span> ลบ
             </button>
           </div>
@@ -103,22 +146,22 @@ function MeangeDepartment() {
     <>
       <div>
         <div className='flex flex-row items-center text-left gap-1 border-b mb-5 pb-5 text-nowrap overflow-hidden'>
-          <span className="text-[#3A3A3A] text-3xl font-medium"><CiSettings /></span>
-          <span className="text-[#3A3A3A] text-lg font-medium">จัดการข้อมูล{mainTitle}</span>
-          <span className="text-[#3A3A3A] text-sm">( {subTitle} )</span>
+          <span className="text-3xl font-medium"><CiSettings /></span>
+          <span className="text-lg font-medium">จัดการข้อมูล{mainTitle}</span>
+          <span className="text-sm">( {subTitle} )</span>
         </div>
 
-        <div className='flex flex-row gap-5'>
+        <div className='flex flex-col gap-5 lg:flex-row'>
           <div className='basis-1/4 bg-white border rounded-2xl shadow-lg px-10 py-5 mb-5 text-nowrap overflow-hidden'>
             <div className='flex flex-col justify-items-center gap-y-2'>
               <div className="pb-2">
-                <span className="text-[#3A3A3A] text-xl font-bold">จำนวน{mainTitle}ทั้งหมด</span>
+                <span className="text-xl font-bold">จำนวน{mainTitle}ทั้งหมด</span>
               </div>
                 <div className=''>
-                  <span className="text-[#3A3A3A] text-[5rem] leading-none font-extrabold">10</span>
+                  <span className="text-[5rem] leading-none font-extrabold">10</span>
                 </div>
                 <div className=''>
-                  <span className="text-[#3A3A3A] text-lg font-bold">รายการ</span>
+                  <span className="text-lg font-bold">รายการ</span>
                 </div>
             </div>
           </div>
@@ -126,9 +169,9 @@ function MeangeDepartment() {
           <div className='basis-3/4 bg-white border rounded-2xl shadow-lg p-4 mb-5 text-nowrap overflow-hidden'>
             <div className='flex flex-col'>
               <div className="flex flex-row items-center text-left gap-1 p-2">
-                <span className="text-[#3A3A3A] text-2xl font-medium"><CiSearch /></span>
-                <span className="text-[#3A3A3A] text-lg font-medium">ค้นหาข้อมูล</span>
-                <span className="text-[#3A3A3A] text-sm">( Search Data )</span>
+                <span className="text-2xl font-medium"><CiSearch /></span>
+                <span className="text-lg font-medium">ค้นหาข้อมูล</span>
+                <span className="text-sm">( Search Data )</span>
               </div>
               {/* <form id="searchData"> */}
                   <div className='px-5 pb-5'>
@@ -160,9 +203,9 @@ function MeangeDepartment() {
           <div className='bg-white border rounded-2xl shadow-lg p-4 text-nowrap overflow-hidden'>
             <div>
               <div className='flex flex-row items-center text-left gap-1 p-2'>
-                <span className="text-[#3A3A3A] text-2xl font-medium"><CiViewTable /></span>
-                <span className="text-[#3A3A3A] text-lg font-medium">ตารางแสดงผลรายการ{mainTitle}</span>
-                <span className="text-[#3A3A3A] text-sm">( DataTable Department )</span>
+                <span className="text-2xl font-medium"><CiViewTable /></span>
+                <span className="text-lg font-medium">ตารางแสดงผลรายการ{mainTitle}</span>
+                <span className="text-sm">( DataTable Department )</span>
                 <div className='ms-auto'>
                   <button className='btn btn-outline btn-info shadow'>
                     <span className='text-md'><FaPlus /></span> 
@@ -182,6 +225,37 @@ function MeangeDepartment() {
             </div>
           </div>
         </div>
+
+        <dialog id="edit_Department" className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Hello!</h3>
+            <p className="py-4">Press ESC key or click the button below to close</p>
+            <div className="modal-action">
+
+              <form method="dialog" className='flex flex-col justify-items-center w-full gap-3'>
+                <div className='flex flex-col px-10 gap-2'>
+                  <input
+                    type="text"
+                    ref={refDepartName}
+                    value={valueDepartName}
+                    onChange={e => setValueDepartName(e.target.value)}
+                    className='input input-bordered w-full'
+                    />
+                  <input
+                    type="text"
+                    ref={refDepartNameEN}
+                    value={valueDepartNameEN}
+                    onChange={e => setValueDepartNameEN(e.target.value)}
+                    className='input input-bordered w-full'
+                    />
+                  </div>
+                <button className="btn">Close</button>
+              </form>
+
+            </div>
+          </div>
+        </dialog>
+        
       </div>
     </>
   )

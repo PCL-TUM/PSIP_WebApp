@@ -16,7 +16,7 @@ function MeangePersonnel() {
       .then(response => {
         const departmentData = response.data
         if (departmentData.status === "Succeed") {
-          document.getElementById('my_modal_5').showModal()
+          document.getElementById('edit_Department').showModal()
           // useState
           setValueDepartName(departmentData.data[0].DEPART_NAME)
           setValueDepartNameEN(departmentData.data[0].KEY_WORD_EN)
@@ -45,7 +45,7 @@ function MeangePersonnel() {
         
         {/* Open the modal using document.getElementById('ID').showModal() method */}
         <button className="btn" onClick={onClickFetchData}>open modal</button>
-        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <dialog id="edit_Department" className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
             <h3 className="font-bold text-lg">Hello!</h3>
             <p className="py-4">Press ESC key or click the button below to close</p>

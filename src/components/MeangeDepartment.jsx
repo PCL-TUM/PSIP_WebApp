@@ -81,11 +81,11 @@ function MeangeDepartment() {
   }
 
   // edit button -------------------------------------------------------------------------------------------------------------------------------
-  const refDepartName = useRef(null)
-  const [valueDepartName, setValueDepartName] = useState('')
-
-  const refDepartNameEN = useRef(null)
-  const [valueDepartNameEN, setValueDepartNameEN] = useState('')
+  const refDepartName = useRef(null);
+  const [valueDepartName, setValueDepartName] = useState('');
+  const [departID, setDepartID] = useState('');
+  // const refDepartNameEN = useRef(null)
+  // const [valueDepartNameEN, setValueDepartNameEN] = useState('')
 
   const onClickFetchDataDepartment = async (e, ID) => {
     await axios.post(`http://localhost:5000/getData/getDataDepartment/${ID}`,
@@ -93,16 +93,12 @@ function MeangeDepartment() {
       .then(response => {
         const departmentData = response.data
         if (departmentData.status === "Succeed") {
-          document.getElementById('edit_Department').showModal()
-          // useState
-          setValueDepartName(departmentData.data[0].DEPART_NAME)
-          setValueDepartNameEN(departmentData.data[0].KEY_WORD_EN)
-          // useRef
-          refDepartName.current.value = valueDepartName
-          refDepartNameEN.current.value = valueDepartNameEN
+          setDepartID(ID)                                         // set departID
+          document.getElementById('edit_Department').showModal()  // open modal
+        
+          setValueDepartName(departmentData.data[0].DEPART_NAME)  // useState
+          refDepartName.current.value = valueDepartName           // useRef
 
-          setCurrentDate(getDate())
-          console.log(currentDate);
         } else {
           console.log("Fail");
         }
@@ -110,6 +106,24 @@ function MeangeDepartment() {
     );
   }
 
+  const onClickModalCancel = async () => {
+    document.getElementById('edit_Department').showModal()
+  }
+
+  const onClickSaveEditData = async () => {
+    setCurrentDate(getDate())
+    let depart_name = valueDepartName; 
+    let create_by = "1";
+    let create_date = currentDate;
+    let modify_date = currentDate;
+    let id = departID;
+
+    console.log('depart_name', depart_name);
+    console.log('create_by', create_by);
+    console.log('create_date', create_date);
+    console.log('modify_date', modify_date);
+    console.log('id', id);
+  }
   // dataTable -----------------------------------------------------------------------------------------------------------------------------------
   const columns = [
     {
@@ -228,11 +242,11 @@ function MeangeDepartment() {
 
         <dialog id="edit_Department" className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
-            <h3 className="font-bold text-lg">Hello!</h3>
-            <p className="py-4">Press ESC key or click the button below to close</p>
-            <div className="modal-action">
+            <h3 className="font-bold text-xl mt-4">แก้ไข{mainTitle}</h3>
+            <p className="py-2">กรุณากรอกข้อมูลให้ครบ</p>
+            <div className="mt-5">
 
-              <form method="dialog" className='flex flex-col justify-items-center w-full gap-3'>
+              <form method="dialog" className='flex flex-col justify-items-center w-full'>
                 <div className='flex flex-col px-10 gap-2'>
                   <input
                     type="text"
@@ -241,15 +255,17 @@ function MeangeDepartment() {
                     onChange={e => setValueDepartName(e.target.value)}
                     className='input input-bordered w-full'
                     />
-                  <input
-                    type="text"
-                    ref={refDepartNameEN}
-                    value={valueDepartNameEN}
-                    onChange={e => setValueDepartNameEN(e.target.value)}
-                    className='input input-bordered w-full'
-                    />
                   </div>
-                <button className="btn">Close</button>
+                  <div className='flex flex-row gap-2 ms-auto mt-5'>
+                    <button className='btn shadow' onClick={onClickModalCancel}>
+                      <span className='text-md'><FaX /></span> 
+                      ยกเลิก
+                    </button>
+                    <button className='btn btn-success shadow' onClick={onClickSaveEditData}>
+                      <span className='text-md'><FaMagnifyingGlass /></span> 
+                      บันทึก
+                    </button>
+                  </div>
               </form>
 
             </div>

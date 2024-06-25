@@ -12,6 +12,11 @@
   font-size: 17px;
 }
 
+
+:root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
+  overflow: hidden;
+  scrollbar-gutter: auto !important;
+}
 .mHisf {
   font-size: .85rem;
   font-weight: 600;

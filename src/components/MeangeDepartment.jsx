@@ -138,7 +138,13 @@ function MeangeDepartment() {
             onClickClearSearchData();
           });
         } else {
-          console.log("Fail");
+          Swal.fire({
+            title: "Fail",
+            text: "บันทึกข้อมูลไม่สำเร็จ",
+            icon: "error"
+          }).then((result) => {
+            onClickClearSearchData();
+          });
         }
       }
     );

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import DataTable from 'react-data-table-component';
 
 import { CiSettings, CiSearch, CiViewTable } from "react-icons/ci";
-import { FaPencil, FaRegTrashCan, FaPlus, FaMagnifyingGlass, FaX } from "react-icons/fa6";
+import { FaPencil, FaRegTrashCan, FaPlus, FaMagnifyingGlass, FaX, FaFloppyDisk  } from "react-icons/fa6";
 
 // get currentDate -----------------------------------------------------------------------------------------------------------------------------------
 function getDate() {
@@ -26,7 +27,7 @@ function MeangeDepartment() {
     const fetchData = async () => {
       try {
         await axios.post('http://localhost:5000/getData/getDataDepartment',
-        { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+        { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
         .then(response => {
           const departmentData = response.data
             if (departmentData.status === "Succeed") {
@@ -46,7 +47,7 @@ function MeangeDepartment() {
   const onClickSearchData = async () => {
     try {
       await axios.post('http://localhost:5000/getData/getDataDepartment',
-      { searchDepartment: searchData }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+      { searchDepartment: searchData }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
       .then(response => {
         const departmentData = response.data
           if (departmentData.status === "Succeed") {
@@ -65,7 +66,7 @@ function MeangeDepartment() {
     setSearchData('');
     try {
       await axios.post('http://localhost:5000/getData/getDataDepartment',
-      { searchDepartment: '' }, { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+      { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
       .then(response => {
         const departmentData = response.data
           if (departmentData.status === "Succeed") {
@@ -89,7 +90,7 @@ function MeangeDepartment() {
 
   const onClickFetchDataDepartment = async (e, ID) => {
     await axios.post(`http://localhost:5000/getData/getDataDepartment/${ID}`,
-      { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+      { searchDepartment: '' }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
       .then(response => {
         const departmentData = response.data
         if (departmentData.status === "Succeed") {
@@ -106,23 +107,41 @@ function MeangeDepartment() {
     );
   }
 
-  const onClickModalCancel = async () => {
+  const onClickModalCancel = () => {
     document.getElementById('edit_Department').showModal()
   }
 
-  const onClickSaveEditData = async () => {
+  const onClickSaveEditData = () => {
     setCurrentDate(getDate())
     let depart_name = valueDepartName; 
     let create_by = "1";
     let create_date = currentDate;
     let modify_date = currentDate;
     let id = departID;
-
-    console.log('depart_name', depart_name);
-    console.log('create_by', create_by);
-    console.log('create_date', create_date);
-    console.log('modify_date', modify_date);
-    console.log('id', id);
+      
+    axios.post(`http://localhost:5000/updateData/updateData`, { 
+      updateType: 2,
+      depart_name: depart_name,
+      create_by: create_by,
+      create_date: create_date,
+      modify_date: modify_date,
+      id: id 
+    }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
+      .then(response => {
+        const departmentData = response.data
+        if (departmentData.status === "Succeed") {
+          Swal.fire({
+            title: "Succeed",
+            text: "บันทึกข้อมูลสำเร็จ",
+            icon: "success"
+          }).then((result) => {
+            onClickClearSearchData();
+          });
+        } else {
+          console.log("Fail");
+        }
+      }
+    );
   }
   // dataTable -----------------------------------------------------------------------------------------------------------------------------------
   const columns = [
@@ -262,7 +281,7 @@ function MeangeDepartment() {
                       ยกเลิก
                     </button>
                     <button className='btn btn-success shadow' onClick={onClickSaveEditData}>
-                      <span className='text-md'><FaMagnifyingGlass /></span> 
+                      <span className='text-md'><FaFloppyDisk /></span> 
                       บันทึก
                     </button>
                   </div>

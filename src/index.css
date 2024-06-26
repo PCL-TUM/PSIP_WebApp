@@ -12,11 +12,11 @@
   font-size: 17px;
 }
 
-
 :root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
   overflow: hidden;
   scrollbar-gutter: auto !important;
 }
+
 .mHisf {
   font-size: .85rem;
   font-weight: 600;
@@ -34,3 +34,11 @@
   position: static !important;
 }
 
+div:where(.swal2-container) div:where(.swal2-popup) {
+  border-radius: 1rem !important;
+  font-family: 'NotoSans';
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  border-radius: 0.45em !important; 
+}

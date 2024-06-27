@@ -36,9 +36,9 @@
 
 div:where(.swal2-container) div:where(.swal2-popup) {
   border-radius: 1rem !important;
-  font-family: 'NotoSans';
+  font-family: 'NotoSans' !important;
 }
 
-div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm, .swal2-cancel {
   border-radius: 0.45em !important; 
 }

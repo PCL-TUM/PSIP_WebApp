@@ -81,12 +81,57 @@ function MeangeDepartment() {
     }
   }
 
+  const [valueAddDepartName, setValueAddDepartName] = useState('');
+
+  const onClickAddDataDepartment = () => {
+    document.getElementById('add_Department').showModal()
+  }
+
+  const onClickSaveAddDataDepartment = () => {
+    setCurrentDate(getDate())
+    let depart_name = valueAddDepartName; 
+    let create_by = "1";
+    let create_date = currentDate;
+    let modify_date = currentDate;
+    let id = departID;
+
+    axios.post(`http://localhost:5000/insertData/insertData`, 
+      { 
+        insertType: 2,
+        depart_name: depart_name,
+        create_by: create_by,
+        create_date: create_date,
+        modify_date: modify_date,
+        key_word:'',
+        key_word_en:'',
+      }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
+      .then(response => {
+        const departmentData = response.data
+        if (departmentData.status === "Succeed") {
+          Swal.fire({
+            title: "Succeed",
+            text: "บันทึกข้อมูลสำเร็จ",
+            icon: "success"
+          }).then((result) => {
+            onClickClearSearchData();
+          });
+        } else {
+          Swal.fire({
+            title: "Fail",
+            text: "บันทึกข้อมูลไม่สำเร็จ",
+            icon: "error"
+          }).then((result) => {
+            onClickClearSearchData();
+          });
+        }
+      }
+    );
+  }
+
   // edit button -------------------------------------------------------------------------------------------------------------------------------
   const refDepartName = useRef(null);
-  const [valueDepartName, setValueDepartName] = useState('');
+  const [valueEditDepartName, setValueEditDepartName] = useState('');
   const [departID, setDepartID] = useState('');
-  // const refDepartNameEN = useRef(null)
-  // const [valueDepartNameEN, setValueDepartNameEN] = useState('')
 
   const onClickFetchDataDepartment = async (e, ID) => {
     await axios.post(`http://localhost:5000/getData/getDataDepartment/${ID}`,
@@ -97,8 +142,8 @@ function MeangeDepartment() {
           setDepartID(ID)                                         // set departID
           document.getElementById('edit_Department').showModal()  // open modal
         
-          setValueDepartName(departmentData.data[0].DEPART_NAME)  // useState
-          refDepartName.current.value = valueDepartName           // useRef
+          setValueEditDepartName(departmentData.data[0].DEPART_NAME)  // useState
+          refDepartName.current.value = valueEditDepartName           // useRef
 
         } else {
           console.log("Fail");
@@ -107,13 +152,61 @@ function MeangeDepartment() {
     );
   }
 
-  const onClickModalCancel = () => {
+  const onClickDeleteDataDepartment = (e, ID) => {
+    let id = ID;
+
+    Swal.fire({
+      title: "Warning",
+      text: "ยืนยันการลบภาควิชา",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "ยืนยัน",
+      cancelButtonText: "ยกเลิก"
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        axios.post(`http://localhost:5000/deleteData/deleteData`,
+          { 
+            deleteType: 2,
+            id: id
+          }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
+          .then(response => {
+            const departmentData = response.data
+            if (departmentData.status === "Succeed") {
+              Swal.fire({
+                title: "Succeed",
+                text: "บันทึกข้อมูลสำเร็จ",
+                icon: "success"
+              }).then((result) => {
+                onClickClearSearchData();
+              });
+            } else {
+              Swal.fire({
+                title: "Fail",
+                text: "บันทึกข้อมูลไม่สำเร็จ",
+                icon: "error"
+              }).then((result) => {
+                onClickClearSearchData();
+              });
+            }
+          }
+        );
+      }
+    });
+
+  }
+
+  const onClickAddModalCancel = () => {
+    document.getElementById('add_Department').showModal()
+  }
+  
+  const onClickEditModalCancel = () => {
     document.getElementById('edit_Department').showModal()
   }
 
   const onClickSaveEditData = () => {
     setCurrentDate(getDate())
-    let depart_name = valueDepartName; 
+    let depart_name = valueEditDepartName; 
     let create_by = "1";
     let create_date = currentDate;
     let modify_date = currentDate;
@@ -164,7 +257,7 @@ function MeangeDepartment() {
             <button className="btn btn-sm btn-outline btn-warning font-normal shadow" onClick={(e) => onClickFetchDataDepartment(e, row.ID)}>
               <span className='text-md'><FaPencil /></span> แก้ไข
             </button>
-            <button className="btn btn-sm btn-outline btn-error font-normal shadow" onClick={(e) => onClickFetchDataDepartment(e, row.ID)}>
+            <button className="btn btn-sm btn-outline btn-error font-normal shadow" onClick={(e) => onClickDeleteDataDepartment(e, row.ID)}>
               <span className='text-md'><FaRegTrashCan /></span> ลบ
             </button>
           </div>
@@ -246,7 +339,7 @@ function MeangeDepartment() {
                 <span className="text-lg font-medium">ตารางแสดงผลรายการ{mainTitle}</span>
                 <span className="text-sm">( DataTable Department )</span>
                 <div className='ms-auto'>
-                  <button className='btn btn-outline btn-info shadow'>
+                  <button className='btn btn-outline btn-info shadow' onClick={onClickAddDataDepartment}>
                     <span className='text-md'><FaPlus /></span> 
                     เพิ่ม{mainTitle}
                   </button>
@@ -276,17 +369,47 @@ function MeangeDepartment() {
                   <input
                     type="text"
                     ref={refDepartName}
-                    value={valueDepartName}
-                    onChange={e => setValueDepartName(e.target.value)}
+                    value={valueEditDepartName}
+                    onChange={e => setValueEditDepartName(e.target.value)}
                     className='input input-bordered w-full'
                     />
                   </div>
                   <div className='flex flex-row gap-2 ms-auto mt-5'>
-                    <button className='btn shadow' onClick={onClickModalCancel}>
+                    <button className='btn shadow' onClick={onClickEditModalCancel}>
                       <span className='text-md'><FaX /></span> 
                       ยกเลิก
                     </button>
                     <button className='btn btn-success shadow' onClick={onClickSaveEditData}>
+                      <span className='text-md'><FaFloppyDisk /></span> 
+                      บันทึก
+                    </button>
+                  </div>
+              </form>
+
+            </div>
+          </div>
+        </dialog>
+
+        <dialog id="add_Department" className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <h3 className="font-bold text-xl mt-4">เพิ่ม{mainTitle}</h3>
+            <p className="py-2">กรุณากรอกข้อมูลให้ครบ</p>
+            <div className="mt-5">
+
+              <form method="dialog" className='flex flex-col justify-items-center w-full'>
+                <div className='flex flex-col px-10 gap-2'>
+                  <input
+                    type="text"
+                    onChange={e => setValueAddDepartName(e.target.value)}
+                    className='input input-bordered w-full'
+                    />
+                  </div>
+                  <div className='flex flex-row gap-2 ms-auto mt-5'>
+                    <button className='btn shadow' onClick={onClickAddModalCancel}>
+                      <span className='text-md'><FaX /></span> 
+                      ยกเลิก
+                    </button>
+                    <button className='btn btn-success shadow' onClick={onClickSaveAddDataDepartment}>
                       <span className='text-md'><FaFloppyDisk /></span> 
                       บันทึก
                     </button>
